@@ -1,0 +1,28 @@
+/* CSS declarations go here */
+.header {
+  height: 10vh;
+}
+.login{
+  display: inline-block;
+}
+.content {
+  height: auto;
+}
+.footer {
+  color: rgb(33, 33, 33);
+  height: 10vh;
+}
+.center-box {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.circle {
+  display: inline-flex;
+  height: 300px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+}
