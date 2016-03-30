@@ -1,3 +1,5 @@
+let _ = lodash;
+
 App = React.createClass({
   // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
@@ -8,13 +10,15 @@ App = React.createClass({
 
   getInitialState() {
     return {
-      exercises: null
-    }
+      exercises: null,
+      favourites: null
+    };
   },
 
   getMeteorData() {
     return {
       exercises: Exercises.find({}).fetch(),
+      favourites: Favourites.find({}).fetch(),
       currentUser: Meteor.user()
     };
   },
@@ -22,12 +26,16 @@ App = React.createClass({
   componentDidMount() {
     Tracker.autorun(() => {
       let user = Meteor.user()
-        , exercises = this.data.exercises;
+        , exercises = this.data.exercises
+        , favourites = this.data.favourites;
 
       const {router} = this.context;
 
       if (user) {
-        this.handleState(exercises);
+        this.handleState({
+          exercises: exercises,
+          favourites: favourites
+        });
 
         router.push({
           pathname: '/dashboard',
@@ -35,7 +43,10 @@ App = React.createClass({
           state: this.state
         });
       } else {
-        this.handleState();
+        this.handleState({
+          exercises: [],
+          favourites: []
+        });
 
         router.push({
           pathname: '/',
@@ -47,9 +58,17 @@ App = React.createClass({
   },
 
   handleState(data) {
-    this.setState({
-      exercises: data
-    });
+    let updated = _.assign({}, this.state);
+
+    if (data.exercises) {
+      updated.exercises = data.exercises;
+    }
+
+    if (data.favourites) {
+      updated.favourites = data.favourites;
+    }
+
+    this.setState(updated);
   },
 
   renderChildren() {
@@ -70,7 +89,7 @@ App = React.createClass({
         <Content>
           { this.renderChildren() }
         </Content>
-        
+
         <Footer />
       </div>
     );
