@@ -30,10 +30,18 @@ Exercise = React.createClass({
 
   addToFavourites(item) {
     Meteor.call("addFavourite", item);
+
+    this.props.handleState({
+      favourites: Favourites.find({}).fetch()
+    });
   },
 
   removeFromFavourites(item) {
     Meteor.call("removeFavourite", item);
+
+    this.props.handleState({
+      favourites: Favourites.find({}).fetch()
+    });
   },
 
   render() {
