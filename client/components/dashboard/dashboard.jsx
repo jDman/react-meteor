@@ -1,12 +1,14 @@
 Dashboard = React.createClass({
   renderItems(){
     if (this.props.exercises.length) {
-      return this.props.exercises[0].data.map(exercise => {
-        return <Exercise key={exercise.id}
-                         details={exercise}
-                         username={this.props.user.username}
-                         handleState={this.props.handleState}
-                         />
+      return this.props.exercises.map(response => {
+        return response.data.map(exercise => {
+          return <Exercise key={exercise.id}
+                           details={exercise}
+                           username={this.props.user.username}
+                           handleState={this.props.handleState}
+                           />
+        });
       });
     }
   },
