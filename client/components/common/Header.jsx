@@ -14,6 +14,10 @@ Header = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
+  propTypes: {
+    user: React.PropTypes.object
+  },
+
   getChildContext() {
     return {
       muiTheme: ThemeManager.getMuiTheme(LightRawTheme)

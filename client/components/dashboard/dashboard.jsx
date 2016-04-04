@@ -1,4 +1,10 @@
 Dashboard = React.createClass({
+  propTypes: {
+    exercises: React.PropTypes.array,
+    user: React.PropTypes.object,
+    handleState: React.PropTypes.func 
+  },
+
   renderItems(){
     if (this.props.exercises.length) {
       return this.props.exercises.map(response => {

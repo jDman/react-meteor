@@ -1,8 +1,6 @@
-let {DropDownMenu, MenuItem, Styles} = MUI;
+let { DropDownMenu, MenuItem, Styles } = MUI;
 
 let { ThemeManager, LightRawTheme } = Styles;
-
-injectTapEventPlugin();
 
 Navigation = React.createClass({
   childContextTypes: {
@@ -19,6 +17,10 @@ Navigation = React.createClass({
     return {
       value: 2
     }
+  },
+
+  componentWillMount() {
+    injectTapEventPlugin();
   },
 
   handleChange(event, index, value){

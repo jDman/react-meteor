@@ -15,7 +15,8 @@ let { ThemeManager, LightRawTheme } = Styles;
 Exercise = React.createClass({
   propTypes: {
     details: React.PropTypes.object.isRequired,
-    username: React.PropTypes.string.isRequired
+    username: React.PropTypes.string.isRequired,
+    handleState: React.PropTypes.func.isRequired
   },
 
   childContextTypes: {
